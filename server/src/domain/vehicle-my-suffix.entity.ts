@@ -11,26 +11,26 @@ import { ManufacturerEntity } from './manufacturer-my-suffix.entity';
  */
 @Entity('vehicle')
 export class VehicleEntity extends BaseEntity {
-  @Column({ name: 'vehicle_id', nullable: true })
-  vehicleID: string;
+    @Column({ name: 'vehicle_id', nullable: true })
+    vehicleID: string;
 
-  @Column({ name: 'plate_number', nullable: true })
-  plateNumber: string;
+    @Column({ name: 'plate_number', nullable: true })
+    plateNumber: string;
 
-  @Column({ type: 'integer', name: 'age', nullable: true })
-  age: number;
+    @Column({ type: 'integer', name: 'age', nullable: true })
+    age: number;
 
-  @Column({ name: 'colour', nullable: true })
-  colour: string;
+    @Column({ name: 'colour', nullable: true })
+    colour: string;
 
-  @ManyToOne(type => VehicleTypeEntity)
-  vehicleType: VehicleTypeEntity;
+    @ManyToOne(type => VehicleTypeEntity)
+    vehicleType: VehicleTypeEntity;
 
-  @ManyToOne(type => VehicleLocationEntity)
-  vehicleLocation: VehicleLocationEntity;
+    @ManyToOne(type => VehicleLocationEntity)
+    vehicleLocation: VehicleLocationEntity;
 
-  @ManyToOne(type => ManufacturerEntity)
-  manufacturer: ManufacturerEntity;
+    @ManyToOne(type => ManufacturerEntity)
+    manufacturer: ManufacturerEntity;
 
-  // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 }

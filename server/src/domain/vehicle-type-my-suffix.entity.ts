@@ -7,11 +7,11 @@ import { BaseEntity } from './base/base.entity';
  */
 @Entity('vehicle_type')
 export class VehicleTypeEntity extends BaseEntity {
-  @Column({ name: 'code', nullable: true })
-  code: string;
+    @Column({ name: 'code', nullable: true })
+    code: string;
 
-  @Column({ name: 'description', nullable: true })
-  description: string;
+    @Column({ name: 'description', nullable: true })
+    description: string;
 
-  // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 }
