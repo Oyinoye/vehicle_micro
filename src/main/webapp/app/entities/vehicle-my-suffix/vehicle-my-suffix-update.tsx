@@ -113,6 +113,22 @@ export const VehicleMySuffixUpdate = (props: IVehicleMySuffixUpdateProps) => {
                 <AvField id="vehicle-my-suffix-colour" data-cy="colour" type="text" name="colour" />
               </AvGroup>
               <AvGroup>
+                <Label id="statusLabel" for="vehicle-status">
+                  <Translate contentKey="maxVehicleApp.wallet.status">Status</Translate>
+                </Label>
+                <AvInput
+                  id="wallet-status"
+                  data-cy="status"
+                  type="select"
+                  className="form-control"
+                  name="status"
+                  value={(!isNew && vehicleEntity.status) || 'Inactive'}
+                >
+                  <option value="Free">{translate('maxVehicleApp.WalletStatus.Inactive')}</option>
+                  <option value="Assigned">{translate('maxVehicleApp.WalletStatus.Active')}</option>
+                </AvInput>
+              </AvGroup>
+              <AvGroup>
                 <Label for="vehicle-my-suffix-vehicleType">
                   <Translate contentKey="maxVehicleApp.vehicle.vehicleType">Vehicle Type</Translate>
                 </Label>

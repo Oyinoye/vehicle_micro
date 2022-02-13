@@ -5,9 +5,9 @@ import { VehicleRepository } from '../repository/vehicle-my-suffix.repository';
 import { VehicleService } from '../service/vehicle-my-suffix.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([VehicleRepository])],
-  controllers: [VehicleController],
-  providers: [VehicleService],
-  exports: [VehicleService],
+    imports: [TypeOrmModule.forFeature([VehicleRepository])],
+    controllers: [VehicleController],
+    providers: [VehicleService],
+    exports: [VehicleService],
 })
 export class VehicleModule {}

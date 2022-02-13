@@ -12,59 +12,59 @@ relationshipNames.push('manufacturer');
 
 @Injectable()
 export class VehicleService {
-  logger = new Logger('VehicleService');
+    logger = new Logger('VehicleService');
 
-  constructor(@InjectRepository(VehicleRepository) private vehicleEntityRepository: VehicleRepository) {}
+    constructor(@InjectRepository(VehicleRepository) private vehicleEntityRepository: VehicleRepository) {}
 
-  async findById(id: number): Promise<VehicleDTO | undefined> {
-    const options = { relations: relationshipNames };
-    const result = await this.vehicleEntityRepository.findOne(id, options);
-    return VehicleMapper.fromEntityToDTO(result);
-  }
-
-  async findByFields(options: FindOneOptions<VehicleDTO>): Promise<VehicleDTO | undefined> {
-    const result = await this.vehicleEntityRepository.findOne(options);
-    return VehicleMapper.fromEntityToDTO(result);
-  }
-
-  async findAndCount(options: FindManyOptions<VehicleDTO>): Promise<[VehicleDTO[], number]> {
-    options.relations = relationshipNames;
-    const resultList = await this.vehicleEntityRepository.findAndCount(options);
-    const vehicleEntityDTO: VehicleDTO[] = [];
-    if (resultList && resultList[0]) {
-      resultList[0].forEach(vehicleEntity => vehicleEntityDTO.push(VehicleMapper.fromEntityToDTO(vehicleEntity)));
-      resultList[0] = vehicleEntityDTO;
+    async findById(id: number): Promise<VehicleDTO | undefined> {
+        const options = { relations: relationshipNames };
+        const result = await this.vehicleEntityRepository.findOne(id, options);
+        return VehicleMapper.fromEntityToDTO(result);
     }
-    return resultList;
-  }
 
-  async save(vehicleEntityDTO: VehicleDTO, creator?: string): Promise<VehicleDTO | undefined> {
-    const entity = VehicleMapper.fromDTOtoEntity(vehicleEntityDTO);
-    if (creator) {
-      if (!entity.createdBy) {
-        entity.createdBy = creator;
-      }
-      entity.lastModifiedBy = creator;
+    async findByFields(options: FindOneOptions<VehicleDTO>): Promise<VehicleDTO | undefined> {
+        const result = await this.vehicleEntityRepository.findOne(options);
+        return VehicleMapper.fromEntityToDTO(result);
     }
-    const result = await this.vehicleEntityRepository.save(entity);
-    return VehicleMapper.fromEntityToDTO(result);
-  }
 
-  async update(vehicleEntityDTO: VehicleDTO, updater?: string): Promise<VehicleDTO | undefined> {
-    const entity = VehicleMapper.fromDTOtoEntity(vehicleEntityDTO);
-    if (updater) {
-      entity.lastModifiedBy = updater;
+    async findAndCount(options: FindManyOptions<VehicleDTO>): Promise<[VehicleDTO[], number]> {
+        options.relations = relationshipNames;
+        const resultList = await this.vehicleEntityRepository.findAndCount(options);
+        const vehicleEntityDTO: VehicleDTO[] = [];
+        if (resultList && resultList[0]) {
+            resultList[0].forEach(vehicleEntity => vehicleEntityDTO.push(VehicleMapper.fromEntityToDTO(vehicleEntity)));
+            resultList[0] = vehicleEntityDTO;
+        }
+        return resultList;
     }
-    const result = await this.vehicleEntityRepository.save(entity);
-    return VehicleMapper.fromEntityToDTO(result);
-  }
 
-  async deleteById(id: number): Promise<void | undefined> {
-    await this.vehicleEntityRepository.delete(id);
-    const entityFind = await this.findById(id);
-    if (entityFind) {
-      throw new HttpException('Error, entity not deleted!', HttpStatus.NOT_FOUND);
+    async save(vehicleEntityDTO: VehicleDTO, creator?: string): Promise<VehicleDTO | undefined> {
+        const entity = VehicleMapper.fromDTOtoEntity(vehicleEntityDTO);
+        if (creator) {
+            if (!entity.createdBy) {
+                entity.createdBy = creator;
+            }
+            entity.lastModifiedBy = creator;
+        }
+        const result = await this.vehicleEntityRepository.save(entity);
+        return VehicleMapper.fromEntityToDTO(result);
     }
-    return;
-  }
+
+    async update(vehicleEntityDTO: VehicleDTO, updater?: string): Promise<VehicleDTO | undefined> {
+        const entity = VehicleMapper.fromDTOtoEntity(vehicleEntityDTO);
+        if (updater) {
+            entity.lastModifiedBy = updater;
+        }
+        const result = await this.vehicleEntityRepository.save(entity);
+        return VehicleMapper.fromEntityToDTO(result);
+    }
+
+    async deleteById(id: number): Promise<void | undefined> {
+        await this.vehicleEntityRepository.delete(id);
+        const entityFind = await this.findById(id);
+        if (entityFind) {
+            throw new HttpException('Error, entity not deleted!', HttpStatus.NOT_FOUND);
+        }
+        return;
+    }
 }

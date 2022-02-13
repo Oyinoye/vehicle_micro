@@ -5,9 +5,9 @@ import { ManufacturerRepository } from '../repository/manufacturer-my-suffix.rep
 import { ManufacturerService } from '../service/manufacturer-my-suffix.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ManufacturerRepository])],
-  controllers: [ManufacturerController],
-  providers: [ManufacturerService],
-  exports: [ManufacturerService],
+    imports: [TypeOrmModule.forFeature([ManufacturerRepository])],
+    controllers: [ManufacturerController],
+    providers: [ManufacturerService],
+    exports: [ManufacturerService],
 })
 export class ManufacturerModule {}

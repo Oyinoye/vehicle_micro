@@ -16,6 +16,11 @@
     {
       "fieldName": "colour",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "VehicleStatus",
+      "fieldValues": "Free,Assigned"
     }
   ],
   "relationships": [

@@ -1,3 +1,4 @@
+import { VehicleStatus } from './../../domain/enumeration/vehicle-status';
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ApiModelProperty } from '@nestjs/swagger';
 import { BaseDTO } from './base.dto';
@@ -10,26 +11,29 @@ import { ManufacturerDTO } from './manufacturer-my-suffix.dto';
  * A VehicleDTO object.
  */
 export class VehicleDTO extends BaseDTO {
-  @ApiModelProperty({ description: 'vehicleID field', required: false })
-  vehicleID: string;
+    @ApiModelProperty({ description: 'vehicleID field', required: false })
+    vehicleID: string;
 
-  @ApiModelProperty({ description: 'plateNumber field', required: false })
-  plateNumber: string;
+    @ApiModelProperty({ description: 'plateNumber field', required: false })
+    plateNumber: string;
 
-  @ApiModelProperty({ description: 'age field', required: false })
-  age: number;
+    @ApiModelProperty({ description: 'age field', required: false })
+    age: number;
 
-  @ApiModelProperty({ description: 'colour field', required: false })
-  colour: string;
+    @ApiModelProperty({ description: 'colour field', required: false })
+    colour: string;
 
-  @ApiModelProperty({ type: VehicleTypeDTO, description: 'vehicleType relationship' })
-  vehicleType: VehicleTypeDTO;
+    @ApiModelProperty({ enum: VehicleStatus, description: 'status enum field', required: false })
+    status: VehicleStatus;
 
-  @ApiModelProperty({ type: VehicleLocationDTO, description: 'vehicleLocation relationship' })
-  vehicleLocation: VehicleLocationDTO;
+    @ApiModelProperty({ type: VehicleTypeDTO, description: 'vehicleType relationship' })
+    vehicleType: VehicleTypeDTO;
 
-  @ApiModelProperty({ type: ManufacturerDTO, description: 'manufacturer relationship' })
-  manufacturer: ManufacturerDTO;
+    @ApiModelProperty({ type: VehicleLocationDTO, description: 'vehicleLocation relationship' })
+    vehicleLocation: VehicleLocationDTO;
 
-  // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    @ApiModelProperty({ type: ManufacturerDTO, description: 'manufacturer relationship' })
+    manufacturer: ManufacturerDTO;
+
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 }

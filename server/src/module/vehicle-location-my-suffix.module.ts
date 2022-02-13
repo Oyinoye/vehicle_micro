@@ -5,9 +5,9 @@ import { VehicleLocationRepository } from '../repository/vehicle-location-my-suf
 import { VehicleLocationService } from '../service/vehicle-location-my-suffix.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([VehicleLocationRepository])],
-  controllers: [VehicleLocationController],
-  providers: [VehicleLocationService],
-  exports: [VehicleLocationService],
+    imports: [TypeOrmModule.forFeature([VehicleLocationRepository])],
+    controllers: [VehicleLocationController],
+    providers: [VehicleLocationService],
+    exports: [VehicleLocationService],
 })
 export class VehicleLocationModule {}

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Entity, Column, JoinColumn, OneToOne, ManyToOne, OneToMany, ManyToMany, JoinTable } from 'typeorm';
 import { BaseEntity } from './base/base.entity';
+import { VehicleStatus } from './enumeration/vehicle-status';
 
 import { VehicleTypeEntity } from './vehicle-type-my-suffix.entity';
 import { VehicleLocationEntity } from './vehicle-location-my-suffix.entity';
@@ -22,6 +23,9 @@ export class VehicleEntity extends BaseEntity {
 
     @Column({ name: 'colour', nullable: true })
     colour: string;
+
+    @Column({ type: 'simple-enum', name: 'status', enum: VehicleStatus })
+    status: VehicleStatus;
 
     @ManyToOne(type => VehicleTypeEntity)
     vehicleType: VehicleTypeEntity;

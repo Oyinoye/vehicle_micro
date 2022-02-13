@@ -1,0 +1,9 @@
+{
+  "maxVehicleApp": {
+    "VehicleStatus": {
+      "null": "",
+      "Free": "Free",
+      "Assigned": "Assigned"
+    }
+  }
+}

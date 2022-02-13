@@ -106,6 +106,9 @@ export const VehicleMySuffix = (props: IVehicleMySuffixProps) => {
                 <th className="hand" onClick={sort('colour')}>
                   <Translate contentKey="maxVehicleApp.vehicle.colour">Colour</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
+                <th className="hand" onClick={sort('status')}>
+                  <Translate contentKey="maxVehicleApp.vehicle.status">Status</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
                 <th>
                   <Translate contentKey="maxVehicleApp.vehicle.vehicleType">Vehicle Type</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
@@ -130,6 +133,9 @@ export const VehicleMySuffix = (props: IVehicleMySuffixProps) => {
                   <td>{vehicle.plateNumber}</td>
                   <td>{vehicle.age}</td>
                   <td>{vehicle.colour}</td>
+                  <td>
+                    <Translate contentKey={`maxVehicleApp.WalletStatus.${vehicle.status}`} />
+                  </td>
                   <td>
                     {vehicle.vehicleType ? (
                       <Link to={`vehicle-type-my-suffix/${vehicle.vehicleType.id}`}>{vehicle.vehicleType.code}</Link>

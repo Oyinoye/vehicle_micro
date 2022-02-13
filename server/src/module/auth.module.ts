@@ -11,19 +11,21 @@ import { AuthorityRepository } from '../repository/authority.repository';
 
 import { PublicUserController } from '../web/rest/public.user.controller';
 import { AccountController } from '../web/rest/account.controller';
+import { KafkaModule } from './kafka.module';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([AuthorityRepository]),
-    UserModule,
-    PassportModule,
-    JwtModule.register({
-      secret: config['jhipster.security.authentication.jwt.base64-secret'],
-      signOptions: { expiresIn: '300s' },
-    }),
-  ],
-  controllers: [UserJWTController, PublicUserController, AccountController],
-  providers: [AuthService, JwtStrategy],
-  exports: [AuthService],
+    imports: [
+        TypeOrmModule.forFeature([AuthorityRepository]),
+        UserModule,
+        PassportModule,
+        JwtModule.register({
+            secret: config['jhipster.security.authentication.jwt.base64-secret'],
+            signOptions: { expiresIn: '300s' },
+        }),
+        KafkaModule,
+    ],
+    controllers: [UserJWTController, PublicUserController, AccountController],
+    providers: [AuthService, JwtStrategy],
+    exports: [AuthService],
 })
 export class AuthModule {}
